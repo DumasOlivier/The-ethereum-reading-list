@@ -3,6 +3,10 @@
 ![Ethereum hero](https://ethereum.org/static/28214bb68eb5445dcb063a72535bc90c/9019e/hero.webp)
 _ethereum.org_
 
+## Blockchain addresses
+
+[What is a blockchain address ?](https://unblock.net/what-is-a-blockchain-address/)
+
 ## Mining
 
 <details>
