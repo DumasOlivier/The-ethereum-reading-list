@@ -7,9 +7,16 @@ _ethereum.org_
 
 <details>
 <summary><a href="https://unblock.net/what-is-a-blockchain-address/">What is a blockchain address ?</a></summary>
-<br>
 
+* When Bitcoin was first created it had the ability to send Bitcoin payments directly to IP addresses. However, Bitcoin’s developers soon realized that this could be vulnerable to man-in-the-middle attacks, so they removed the feature, and it hasn’t been restored to date.
+
+* Once Bitcoin abandoned the Pay to IP idea the developers switched to the Pay To Public Key Hash 
+ 
 * The format of an address (Bank account nuber, SWIFT code, postal address) doesn’t matter at all, what matters is that it serves its purpose of helping to locate a specific location – physical or virtual.  
+
+* Ethereum developers are somewhat partial to the ICAP format, which is base58 and uses checksums just like Bitcoin and other cryptocurrencies. The really potentially attractive feature of the ICAP format though is that it is compatible with another existing format – the International Bank Account Number (IBAN) system. This means all the existing banking software and systems can understand and interact with these ICAP Ethereum addresses.  
+
+* ...  
 
 </details>
 
