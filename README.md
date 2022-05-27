@@ -2,7 +2,11 @@
 
 ## Mining
 
-[Mining Algorithms](https://ethereum.org/en/developers/docs/consensus-mechanisms/pow/mining-algorithms/)
+<details>
+<summary><a href="https://ethereum.org/en/developers/docs/consensus-mechanisms/pow/mining-algorithms/">Mining Algorithms</a></summary>
+<br>
+TODO
+</details>
 
 ## Security
 [Smart contract Security](https://ethereum.org/en/developers/docs/smart-contracts/security/)
