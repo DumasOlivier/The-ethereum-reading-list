@@ -5,7 +5,14 @@ _ethereum.org_
 
 ## Blockchain addresses
 
-[What is a blockchain address ?](https://unblock.net/what-is-a-blockchain-address/)
+<details>
+<summary><a href="https://unblock.net/what-is-a-blockchain-address/">What is a blockchain address ?</a></summary>
+<br>
+
+* The format of an address doesn’t matter at all, what matters is that it serves its purpose of helping to locate a specific location – physical or virtual.  
+
+</details>
+
 
 ## Mining
 
