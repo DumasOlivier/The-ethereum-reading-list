@@ -24,8 +24,6 @@ _ethereum.org_
  
 * Ethereum developers are somewhat partial to the ICAP format, which is base58 and uses checksums just like Bitcoin and other cryptocurrencies. The really potentially attractive feature of the ICAP format though is that it is compatible with another existing format – the International Bank Account Number (IBAN) system. This means all the existing banking software and systems can understand and interact with these ICAP Ethereum addresses.  
 
-* ...  
-
 </details>
 
 
