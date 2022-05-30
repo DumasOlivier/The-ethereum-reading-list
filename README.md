@@ -13,13 +13,23 @@ _ethereum.org_
 * Once Bitcoin abandoned the Pay to IP idea the developers switched to the Pay To Public Key Hash 
  
 * The format of an address (Bank account nuber, SWIFT code, postal address) doesn’t matter at all, what matters is that it serves its purpose of helping to locate a specific location – physical or virtual.  
+ 
+* It makes no difference what algorithms you use to generate the address, how you manipulate the public key, or what the resulting address actually looks like. However, it is important to note that the method used to create an address can have implications on usability, privacy and security.
+ 
+* Since the beginning, users of Bitcoin were perplexed when seeing Ethereum addresses, which are long hexadecimal strings beginning with 0x, like this: 0x0eb81892540747ec60f1389ec734a2c0e5f9f735.
+ 
+* The address creation method used by Ethereum isn’t so different from Bitcoin. It begins with the private key, which uses ECDSA to create a public key, just like Bitcoin. The public key is then hashed using Keccak-256, which gives us a 32-byte string. Ethereum drops the first 12 bytes, and the 20 bytes left over yield a 40 character hexadecimal address, to which is added a 0x prefix
 
+* There’s another critical difference with Ethereum addresses, and that’s a lack of checksum. With Ethereum there’s no protection from typing just one character wrong and having your funds gone forever.
+ 
 * Ethereum developers are somewhat partial to the ICAP format, which is base58 and uses checksums just like Bitcoin and other cryptocurrencies. The really potentially attractive feature of the ICAP format though is that it is compatible with another existing format – the International Bank Account Number (IBAN) system. This means all the existing banking software and systems can understand and interact with these ICAP Ethereum addresses.  
 
 * ...  
 
 </details>
 
+
+## Ethereum Name Service
 
 ## Mining
 
