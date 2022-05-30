@@ -6,6 +6,17 @@ _ethereum.org_
 ## Blockchain addresses
 
 <details>
+<summary><a href="https://info.etherscan.com/what-is-an-ethereum-address/">What is an ethereum address ?</a></summary>
+
+* There are two types of addresses in Ethereum: Externally Owned Address (EOA) and Contract Address.
+
+* Externally Owned Address refers to an account with a public and private key pair that holds your funds : a 42-character hexadecimal address derived from the last 20 bytes of the public key controlling the account with 0x appended in front.
+ 
+* Contract address refers to the address hosting a collection of code on the Ethereum blockchain that executes functions.
+
+</details>
+
+<details>
 <summary><a href="https://unblock.net/what-is-a-blockchain-address/">What is a blockchain address ?</a></summary>
 
 * When Bitcoin was first created it had the ability to send Bitcoin payments directly to IP addresses. However, Bitcoin’s developers soon realized that this could be vulnerable to man-in-the-middle attacks, so they removed the feature, and it hasn’t been restored to date.
