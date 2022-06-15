@@ -5,7 +5,10 @@ Reading list of interesting articles and their highlights used to learn Solidity
 ![Ethereum hero](https://ethereum.org/static/28214bb68eb5445dcb063a72535bc90c/9019e/hero.webp)
 _ethereum.org_
 
-_How to contribute : Add useful articles and their highlights when you see a 🏗️_
+### How to contribute ?
+ - Add useful articles and their highlights
+ - Summarize the articles where you see a 🏗️
+ - Create an issue to request an article explaining concepts that you want to learn
 
 ## Blockchain addresses
 
