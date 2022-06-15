@@ -57,7 +57,19 @@ TODO
 </details>
 
 ## Security
-[Smart contract Security 🏗️](https://ethereum.org/en/developers/docs/smart-contracts/security/)
+
+<details>
+<summary><a href="https://ethereum.org/en/developers/docs/smart-contracts/security/">Smart contract Security 🏗️</a></summary>
+<br>
+ * An audit is no longer sufficient as the only security consideration. Security starts before you write your first line of smart contract code, security starts with proper design and development processes.
+
+ * Follow the development process [describe here](https://ethereum.org/en/developers/docs/smart-contracts/security/#smart-contract-development-process)
+ 
+ * Beware of attacks detailed in the following articles 👇
+
+ * You can use security tools such as Slither, Mythril, Securify ... Double check [the list in the article](https://ethereum.org/en/developers/docs/smart-contracts/security/#smart-contract-security) to find the one that fits your needs.
+</details>
+
 
 [Smart contract Security Best Practices 🏗️](https://consensys.github.io/smart-contract-best-practices/)
 
