@@ -44,7 +44,7 @@ _ethereum.org_
 </details>
 
 <details>
-<summary><a href="https://ethereum.org/en/developers/docs/accounts">Ethereum Accounts 🏗️</a></summary>
+<summary><a href="https://ethereum.org/en/developers/docs/accounts">Ethereum Accounts</a></summary>
  
  * Accounts can be user-controlled (Externally-owned accounts) or deployed as smart contracts (Smart Contract accounts).
 
@@ -69,7 +69,14 @@ _ethereum.org_
 
    * **storageRoot (or storage hash):** A 256-bit hash of the root node of a Merkle Patricia trie that encodes the storage contents of the account (a mapping between 256-bit integer values), encoded into the trie as a mapping from the Keccak 256-bit hash of the 256-bit integer keys to the RLP-encoded 256-bit integer values.
 
- * ...
+ * The public key is generated from the private key using the _Elliptic Curve Digital Signature Algorithm_.
+ 
+ * The public address for an account is built by taking the last 20 bytes of the Keccak-256 hash of the public key and adding 0x to the beginning.
+
+ * It is possible to derive new public keys from your private key but you cannot derive a private key from public keys.
+
+ * A contract address comes from the creator's address and the number of transactions sent from that address (the “nonce”).
+
 </details>
 
 ## Ethereum Name Service
