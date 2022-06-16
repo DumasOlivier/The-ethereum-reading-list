@@ -93,7 +93,7 @@ TODO
 
 <details>
 <summary><a href="https://ethereum.org/en/developers/docs/smart-contracts/security/">Smart contract Security</a></summary>
-<br>
+
  * An audit is no longer sufficient as the only security consideration. Security starts before you write your first line of smart contract code, security starts with proper design and development processes.
 
  * Follow the development process [describe here](https://ethereum.org/en/developers/docs/smart-contracts/security/#smart-contract-development-process)
