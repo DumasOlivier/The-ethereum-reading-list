@@ -41,10 +41,36 @@ _ethereum.org_
 * There’s another critical difference with Ethereum addresses, and that’s a lack of checksum. With Ethereum there’s no protection from typing just one character wrong and having your funds gone forever.
  
 * Ethereum developers are somewhat partial to the ICAP format, which is base58 and uses checksums just like Bitcoin and other cryptocurrencies. The really potentially attractive feature of the ICAP format though is that it is compatible with another existing format – the International Bank Account Number (IBAN) system. This means all the existing banking software and systems can understand and interact with these ICAP Ethereum addresses.  
-
 </details>
 
-[Ethereum Accounts 🏗️](https://ethereum.org/en/developers/docs/accounts)
+<details>
+<summary><a href="https://ethereum.org/en/developers/docs/accounts">Ethereum Accounts 🏗️</a></summary>
+ 
+ * Accounts can be user-controlled (Externally-owned accounts) or deployed as smart contracts (Smart Contract accounts).
+
+ * Both can receive, hold and send ETH and tokens & Interact with deployed smart contracts
+
+ * Key differencies
+   > Externally-owned accounts
+   > - Creating an account costs nothing
+   > - Can initiate transactions
+   > - Transactions between externally-owned accounts can only be ETH/token transfers
+   > <br/>
+   > Contract accounts
+   > 
+   > - Creating a contract has a cost because you're using network storage
+   > - Can only send transactions in response to receiving a transaction
+   > - Transactions from an external account to a contract account can trigger code which can execute many different actions, such as transferring tokens or even creating a new contract
+ 
+ * Accounts have four fields :
+   * **nonce :** Number of transactions sent from the account. In a contract account, this represents the number of contracts created by the account.
+   * **balance :** The number of wei owned by this address.
+   * **codeHash :** This hash refers to the code of an account on the Ethereum virtual machine (EVM). It cannot be changed, unlike the other account fields. For externally owned accounts, the codeHash field is the hash of an empty string.
+
+   * **storageRoot (or storage hash):** A 256-bit hash of the root node of a Merkle Patricia trie that encodes the storage contents of the account (a mapping between 256-bit integer values), encoded into the trie as a mapping from the Keccak 256-bit hash of the 256-bit integer keys to the RLP-encoded 256-bit integer values.
+
+ * ...
+</details>
 
 ## Ethereum Name Service
 
