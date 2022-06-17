@@ -103,9 +103,6 @@ TODO
  * You can use security tools such as Slither, Mythril, Securify ... Double check [the list in the article](https://ethereum.org/en/developers/docs/smart-contracts/security/#smart-contract-security) to find the one that fits your needs.
 </details>
 
-
-[Smart contract Security Best Practices 🏗️](https://consensys.github.io/smart-contract-best-practices/)
-
 [Reetrancy attack 🏗️](https://consensys.github.io/smart-contract-best-practices/attacks/reentrancy/)
 
 [Oracle manipulation attack 🏗️](https://consensys.github.io/smart-contract-best-practices/attacks/oracle-manipulation/)
