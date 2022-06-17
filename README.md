@@ -103,7 +103,47 @@ TODO
  * You can use security tools such as Slither, Mythril, Securify ... Double check [the list in the article](https://ethereum.org/en/developers/docs/smart-contracts/security/#smart-contract-security) to find the one that fits your needs.
 </details>
 
-[Reetrancy attack 🏗️](https://consensys.github.io/smart-contract-best-practices/attacks/reentrancy/)
+<details>
+<summary><a href="https://consensys.github.io/smart-contract-best-practices/attacks/reentrancy/">Reetrancy attack 🏗️</a></summary>
+
+  * A reentrancy attack occurs when a function makes an external call to another untrusted contract and this untrusted contract makes a recursive call back to the original function in an attempt to drain funds.
+
+  * Reentrancy on a Single Function 
+ 
+    * The first version of this bug to be noticed involved functions that could be called repeatedly, before the first invocation of the function was finished.
+
+<code>
+// INSECURE
+mapping (address => uint) private userBalances;
+
+function withdrawBalance() public {
+    uint amountToWithdraw = userBalances[msg.sender];
+    (bool success, ) = msg.sender.call.value(amountToWithdraw)(""); // At this point, the caller's code is executed, and can call withdrawBalance again
+    require(success);
+    userBalances[msg.sender] = 0;
+}
+</code>
+ 
+    * The best way to prevent this attack is to make sure you don't call an external function until you've done all the internal work you need to do:
+ 
+  * Cross-function Reentrancy
+
+    * 
+
+<code>
+mapping (address => uint) private userBalances;
+
+function withdrawBalance() public {
+    uint amountToWithdraw = userBalances[msg.sender];
+    userBalances[msg.sender] = 0;
+    (bool success, ) = msg.sender.call.value(amountToWithdraw)(""); // The user's balance is already 0, so future invocations won't withdraw anything
+    require(success);
+}
+</code>
+
+</details>
+
+[Reetrancy attack via a modifier 🏗️](https://medium.com/valixconsulting/solidity-smart-contract-security-by-example-03-reentrancy-via-modifier-fba6b1d8ff81)
 
 [Oracle manipulation attack 🏗️](https://consensys.github.io/smart-contract-best-practices/attacks/oracle-manipulation/)
 
