@@ -94,6 +94,8 @@ TODO
 <details>
 <summary><a href="https://ethereum.org/en/developers/docs/smart-contracts/security/">Smart contract Security</a></summary>
 
+Also inspired from this really good article [Protect Your Solidity Smart Contracts From Reentrancy Attacks](https://medium.com/coinmonks/protect-your-solidity-smart-contracts-from-reentrancy-attacks-9972c3af7c21)
+
  * An audit is no longer sufficient as the only security consideration. Security starts before you write your first line of smart contract code, security starts with proper design and development processes.
 
  * Follow the development process [describe here](https://ethereum.org/en/developers/docs/smart-contracts/security/#smart-contract-development-process)
@@ -112,7 +114,7 @@ TODO
  
     * The first version of this bug to be noticed involved functions that could be called repeatedly, before the first invocation of the function was finished.
 
-<code>
+```solidity
 // INSECURE
 mapping (address => uint) private userBalances;
 
@@ -122,15 +124,8 @@ function withdrawBalance() public {
     require(success);
     userBalances[msg.sender] = 0;
 }
-</code>
- 
-    * The best way to prevent this attack is to make sure you don't call an external function until you've done all the internal work you need to do:
- 
-  * Cross-function Reentrancy
 
-    * 
-
-<code>
+// SECURE : Make sure you don't call an external function until you've done all the internal work you need to do:
 mapping (address => uint) private userBalances;
 
 function withdrawBalance() public {
@@ -139,8 +134,43 @@ function withdrawBalance() public {
     (bool success, ) = msg.sender.call.value(amountToWithdraw)(""); // The user's balance is already 0, so future invocations won't withdraw anything
     require(success);
 }
-</code>
+```
 
+  * Cross-function Reentrancy
+
+    * Attack possible when a vulnerable function shares state with another function that has a desirable effect for the attacker.
+
+
+```solidity
+// Here withdraw() calls the attacker’s fallback() function same as with the single function reentrancy attack.
+// The difference is the fallback() function makes a call to transfer instead of recursively calling withdraw().
+// Because the balance has not been set to 0 before this call, the transfer function can transfer a balance that has already been spent.
+
+function transfer(address to, uint amount) external {
+    if (balances[msg.sender] >= amount) {
+        balances[to] += amount;
+        balances[msg.sender] -= amount;
+    }
+}
+function withdraw() external {
+    uint256 amount = balances[msg.sender];
+    require(msg.sender.call.value(amount)());
+    balances[msg.sender] = 0;
+}
+```
+ 
+  * Prevent reentrancy attacks
+ 
+    * Finishing all internal work (ie. state changes) first, and only then calling the external function.
+ 
+    * Avoid calling functions which call external functions.
+ 
+    * When it's possible for you, it's considered safer to use send() and transfer() instead of call() because they are limited to 2,300 gas.
+
+    * Use the Checks-effects-interactions pattern (described below 👇)
+ 
+  * The Checks-effects-interactions pattern
+ 
 </details>
 
 [Reetrancy attack via a modifier 🏗️](https://medium.com/valixconsulting/solidity-smart-contract-security-by-example-03-reentrancy-via-modifier-fba6b1d8ff81)
