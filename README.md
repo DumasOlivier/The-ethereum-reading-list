@@ -106,7 +106,7 @@ Also inspired from this really good article [Protect Your Solidity Smart Contrac
 </details>
 
 <details>
-<summary><a href="https://consensys.github.io/smart-contract-best-practices/attacks/reentrancy/">Reetrancy attack 🏗️</a></summary>
+<summary><a href="https://consensys.github.io/smart-contract-best-practices/attacks/reentrancy/">Reetrancy attack</a></summary>
 
   * A reentrancy attack occurs when a function makes an external call to another untrusted contract and this untrusted contract makes a recursive call back to the original function in an attempt to drain funds.
 
@@ -167,9 +167,22 @@ function withdraw() external {
  
     * When it's possible for you, it's considered safer to use send() and transfer() instead of call() because they are limited to 2,300 gas.
 
-    * Use the Checks-effects-interactions pattern (described below 👇)
+    * Use the Checks-effects-interactions pattern
+    >This pattern defines the order in which you should structure your functions.
+    >
+    >First perform any checks, which are normally assert and require statements, at the beginning of the function.
+    >
+    >If the checks pass, the function should then resolve all the effects to the state of the contract.
+    >
+    >Only after all state changes are resolved should the function interact with other contracts. By calling external functions last, even if an attacker makes a recursive call to the original function they cannot abuse the state of the contract.
  
-  * The Checks-effects-interactions pattern
+  * Mutex
+ 
+    * In more complex situations such as protecting against cross-function reentrancy attacks it may be necessary to use a mutex.
+
+    * A mutex places a lock on the contract state. Only the owner of the lock can modify the state.
+ 
+    * OpenZeppelin has it’s own mutex implementation you can use called ReentrancyGuard. [Please check the documentation here.](https://docs.openzeppelin.com/contracts/4.x/api/security#ReentrancyGuard)
  
 </details>
 
