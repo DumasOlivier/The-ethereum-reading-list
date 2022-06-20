@@ -79,6 +79,50 @@ _ethereum.org_
 
 </details>
 
+## Smart contracts
+
+<details>
+<summary><a href="https://ethereum.stackexchange.com/questions/101336/what-is-the-benefit-of-using-create2-to-create-a-smart-contract">What is the benefit of using create2() to create a smart contract?</a></summary>
+<br/>
+
+_This answer from [Batın Evirgen](https://ethereum.stackexchange.com/users/70574/bat%c4%b1n-evirgen) was copy pasted directly as it's super clear and short like that._
+
+CREATE opcode is used by default when deploying smart contracts. The deployed contract address is calculated like this.
+
+```
+keccak256(senderAddress, nonce)
+```
+
+CREATE2 opcode is introduced later and allows you to predetermine the contract address. Contract address is computed like this.
+
+```
+keccak256(0xFF, senderAddress, salt, bytecode)
+```
+ 
+`0xFF` parameter is a constant to prevent collision with CREATE opcode.
+
+`salt` parameter is a value sender sends when deploying contract.
+
+`bytecode` parameter is, you probably guessed it, the bytecode of the smart contract you want to deploy.
+
+If you want to predetermine the contract address before deploying, you can simply loop through different `salt` values and select the one you like (or want).
+
+A great example of using CREATE2 can be seen here. [Application of CREATE2 opcode](https://www.reddit.com/r/ethdev/comments/a43tzv/example_of_how_to_use_the_new_create2_opcode_in/ebdeu00/)
+
+Edit: Creating a contract with new keyword requires you to know the contract's source code. After creating a contract with new keyword, it will return the created contract's address.
+
+This also uses CREATE opcode behind to create the contract.
+
+</details>
+
+
+<details>
+<summary><a href="https://ethereum.org/en/developers/docs/consensus-mechanisms/pow/mining-algorithms/">Deploying Smart Contracts Using CREATE2 🏗️</a></summary>
+<br>
+TODO
+</details>
+
+
 ## Ethereum Name Service
 
 ## Mining
