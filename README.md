@@ -6,41 +6,42 @@ Reading list of interesting articles and their highlights used to learn Solidity
 _ethereum.org_
 
 ### How to contribute ?
- - Add useful articles and their highlights
- - Summarize the articles where you see a 🏗️
- - Create an issue to request an article explaining concepts that you want to learn
+
+- Add useful articles and their highlights
+- Summarize the articles where you see a 🏗️
+- Create an issue to request an article explaining concepts that you want to learn
 
 ## Blockchain addresses
 
 <details>
 <summary><a href="https://info.etherscan.com/what-is-an-ethereum-address/">What is an ethereum address ?</a></summary>
 
-* There are two types of addresses in Ethereum: Externally Owned Address (EOA) and Contract Address.
+- There are two types of addresses in Ethereum: Externally Owned Address (EOA) and Contract Address.
 
-* Externally Owned Address refers to an account with a public and private key pair that holds your funds : a 42-character hexadecimal address derived from the last 20 bytes of the public key controlling the account with 0x appended in front.
- 
-* Contract address refers to the address hosting a collection of code on the Ethereum blockchain that executes functions.
+- Externally Owned Address refers to an account with a public and private key pair that holds your funds : a 42-character hexadecimal address derived from the last 20 bytes of the public key controlling the account with 0x appended in front.
+
+- Contract address refers to the address hosting a collection of code on the Ethereum blockchain that executes functions.
 
 </details>
 
 <details>
 <summary><a href="https://unblock.net/what-is-a-blockchain-address/">What is a blockchain address ?</a></summary>
 
-* When Bitcoin was first created it had the ability to send Bitcoin payments directly to IP addresses. However, Bitcoin’s developers soon realized that this could be vulnerable to man-in-the-middle attacks, so they removed the feature, and it hasn’t been restored to date.
+- When Bitcoin was first created it had the ability to send Bitcoin payments directly to IP addresses. However, Bitcoin’s developers soon realized that this could be vulnerable to man-in-the-middle attacks, so they removed the feature, and it hasn’t been restored to date.
 
-* Once Bitcoin abandoned the Pay to IP idea the developers switched to the Pay To Public Key Hash 
- 
-* The format of an address (Bank account nuber, SWIFT code, postal address) doesn’t matter at all, what matters is that it serves its purpose of helping to locate a specific location – physical or virtual.  
- 
-* It makes no difference what algorithms you use to generate the address, how you manipulate the public key, or what the resulting address actually looks like. However, it is important to note that the method used to create an address can have implications on usability, privacy and security.
- 
-* Since the beginning, users of Bitcoin were perplexed when seeing Ethereum addresses, which are long hexadecimal strings beginning with 0x, like this: 0x0eb81892540747ec60f1389ec734a2c0e5f9f735.
- 
-* The address creation method used by Ethereum isn’t so different from Bitcoin. It begins with the private key, which uses ECDSA to create a public key, just like Bitcoin. The public key is then hashed using Keccak-256, which gives us a 32-byte string. Ethereum drops the first 12 bytes, and the 20 bytes left over yield a 40 character hexadecimal address, to which is added a 0x prefix
+- Once Bitcoin abandoned the Pay to IP idea the developers switched to the Pay To Public Key Hash
 
-* There’s another critical difference with Ethereum addresses, and that’s a lack of checksum. With Ethereum there’s no protection from typing just one character wrong and having your funds gone forever.
- 
-* Ethereum developers are somewhat partial to the ICAP format, which is base58 and uses checksums just like Bitcoin and other cryptocurrencies. The really potentially attractive feature of the ICAP format though is that it is compatible with another existing format – the International Bank Account Number (IBAN) system. This means all the existing banking software and systems can understand and interact with these ICAP Ethereum addresses.  
+- The format of an address (Bank account nuber, SWIFT code, postal address) doesn’t matter at all, what matters is that it serves its purpose of helping to locate a specific location – physical or virtual.
+
+- It makes no difference what algorithms you use to generate the address, how you manipulate the public key, or what the resulting address actually looks like. However, it is important to note that the method used to create an address can have implications on usability, privacy and security.
+
+- Since the beginning, users of Bitcoin were perplexed when seeing Ethereum addresses, which are long hexadecimal strings beginning with 0x, like this: 0x0eb81892540747ec60f1389ec734a2c0e5f9f735.
+
+- The address creation method used by Ethereum isn’t so different from Bitcoin. It begins with the private key, which uses ECDSA to create a public key, just like Bitcoin. The public key is then hashed using Keccak-256, which gives us a 32-byte string. Ethereum drops the first 12 bytes, and the 20 bytes left over yield a 40 character hexadecimal address, to which is added a 0x prefix
+
+- There’s another critical difference with Ethereum addresses, and that’s a lack of checksum. With Ethereum there’s no protection from typing just one character wrong and having your funds gone forever.
+
+- Ethereum developers are somewhat partial to the ICAP format, which is base58 and uses checksums just like Bitcoin and other cryptocurrencies. The really potentially attractive feature of the ICAP format though is that it is compatible with another existing format – the International Bank Account Number (IBAN) system. This means all the existing banking software and systems can understand and interact with these ICAP Ethereum addresses.
 </details>
 
 <details>
@@ -48,34 +49,37 @@ _ethereum.org_
  
  * Accounts can be user-controlled (Externally-owned accounts) or deployed as smart contracts (Smart Contract accounts).
 
- * Both can receive, hold and send ETH and tokens & Interact with deployed smart contracts
+- Both can receive, hold and send ETH and tokens & Interact with deployed smart contracts
 
- * Key differencies
-   > Externally-owned accounts
-   > - Creating an account costs nothing
-   > - Can initiate transactions
-   > - Transactions between externally-owned accounts can only be ETH/token transfers
-   > <br/>
-   > Contract accounts
-   > 
-   > - Creating a contract has a cost because you're using network storage
-   > - Can only send transactions in response to receiving a transaction
-   > - Transactions from an external account to a contract account can trigger code which can execute many different actions, such as transferring tokens or even creating a new contract
- 
- * Accounts have four fields :
-   * **nonce :** Number of transactions sent from the account. In a contract account, this represents the number of contracts created by the account.
-   * **balance :** The number of wei owned by this address.
-   * **codeHash :** This hash refers to the code of an account on the Ethereum virtual machine (EVM). It cannot be changed, unlike the other account fields. For externally owned accounts, the codeHash field is the hash of an empty string.
+- Key differencies
 
-   * **storageRoot (or storage hash):** A 256-bit hash of the root node of a Merkle Patricia trie that encodes the storage contents of the account (a mapping between 256-bit integer values), encoded into the trie as a mapping from the Keccak 256-bit hash of the 256-bit integer keys to the RLP-encoded 256-bit integer values.
+  > Externally-owned accounts
+  >
+  > - Creating an account costs nothing
+  > - Can initiate transactions
+  > - Transactions between externally-owned accounts can only be ETH/token transfers
+  >   <br/>
+  >   Contract accounts
+  >
+  > - Creating a contract has a cost because you're using network storage
+  > - Can only send transactions in response to receiving a transaction
+  > - Transactions from an external account to a contract account can trigger code which can execute many different actions, such as transferring tokens or even creating a new contract
 
- * The public key is generated from the private key using the _Elliptic Curve Digital Signature Algorithm_.
- 
- * The public address for an account is built by taking the last 20 bytes of the Keccak-256 hash of the public key and adding 0x to the beginning.
+- Accounts have four fields :
 
- * It is possible to derive new public keys from your private key but you cannot derive a private key from public keys.
+  - **nonce :** Number of transactions sent from the account. In a contract account, this represents the number of contracts created by the account.
+  - **balance :** The number of wei owned by this address.
+  - **codeHash :** This hash refers to the code of an account on the Ethereum virtual machine (EVM). It cannot be changed, unlike the other account fields. For externally owned accounts, the codeHash field is the hash of an empty string.
 
- * A contract address comes from the creator's address and the number of transactions sent from that address (the “nonce”).
+  - **storageRoot (or storage hash):** A 256-bit hash of the root node of a Merkle Patricia trie that encodes the storage contents of the account (a mapping between 256-bit integer values), encoded into the trie as a mapping from the Keccak 256-bit hash of the 256-bit integer keys to the RLP-encoded 256-bit integer values.
+
+- The public key is generated from the private key using the _Elliptic Curve Digital Signature Algorithm_.
+
+- The public address for an account is built by taking the last 20 bytes of the Keccak-256 hash of the public key and adding 0x to the beginning.
+
+- It is possible to derive new public keys from your private key but you cannot derive a private key from public keys.
+
+- A contract address comes from the creator's address and the number of transactions sent from that address (the “nonce”).
 
 </details>
 
@@ -98,7 +102,7 @@ CREATE2 opcode is introduced later and allows you to predetermine the contract a
 ```
 keccak256(0xFF, senderAddress, salt, bytecode)
 ```
- 
+
 `0xFF` parameter is a constant to prevent collision with CREATE opcode.
 
 `salt` parameter is a value sender sends when deploying contract.
@@ -115,13 +119,47 @@ This also uses CREATE opcode behind to create the contract.
 
 </details>
 
-
 <details>
-<summary><a href="https://ethereum.org/en/developers/docs/consensus-mechanisms/pow/mining-algorithms/">Deploying Smart Contracts Using CREATE2 🏗️</a></summary>
+<summary><a href="https://docs.openzeppelin.com/cli/2.8/deploying-with-create2">Deploying Smart Contracts Using CREATE2</a></summary>
 <br>
-TODO
-</details>
 
+- The CREATE2 opcode gives us the ability predict the address where a contract will be deployed, without ever having to do so.
+
+- There are two major ways in which a smart contract can be deployed: with the CREATE and CREATE2 flows.
+
+#### With `CREATE` :
+
+> Smart contracts can be created both by other contracts (using Solidity’s `new` keyword) and by regular accounts. In both cases, the address for the new contract is computed the same way: as a function of the sender’s own address and a nonce.
+
+```solidity
+new_address = hash(sender, nonce)
+```
+
+> For regular accounts, the `nonce` is increased on every transaction, while for contract accounts it is increased on every contract creation. This means it is possible to predict the address where the next created contract will be deployed, but only if no other transactions happen before then - an undesirable property for counterfactual systems.
+
+#### With `CREATE2` :
+
+- The whole idea behind this opcode is to make the resulting address independent of future events.
+
+```solidity
+// New addresses are a function of:
+// - 0xFF, a constant that prevents collisions with CREATE
+// - The sender’s own address
+// - A salt (an arbitrary value provided by the sender)
+// - The to-be-deployed contract’s bytecode
+
+new_address = hash(0xFF, sender, salt, bytecode)
+```
+
+#### Using CREATE2 from the Openzeppelin's CLI :
+
+- Because CREATE2 is an EVM opcode, it is normally only usable by smart contracts and not external accounts.
+
+- However, the OpenZeppelin CLI provides a handy way of running CREATE2-like deployments directly from the terminal.
+
+- [Check the official documentation of how to do so here](https://docs.openzeppelin.com/cli/2.8/deploying-with-create2)
+
+</details>
 
 ## Ethereum Name Service
 
@@ -140,23 +178,23 @@ TODO
 
 Also inspired from this really good article [Protect Your Solidity Smart Contracts From Reentrancy Attacks](https://medium.com/coinmonks/protect-your-solidity-smart-contracts-from-reentrancy-attacks-9972c3af7c21)
 
- * An audit is no longer sufficient as the only security consideration. Security starts before you write your first line of smart contract code, security starts with proper design and development processes.
+- An audit is no longer sufficient as the only security consideration. Security starts before you write your first line of smart contract code, security starts with proper design and development processes.
 
- * Follow the development process [describe here](https://ethereum.org/en/developers/docs/smart-contracts/security/#smart-contract-development-process)
- 
- * Beware of attacks detailed in the following articles 👇
+- Follow the development process [describe here](https://ethereum.org/en/developers/docs/smart-contracts/security/#smart-contract-development-process)
 
- * You can use security tools such as Slither, Mythril, Securify ... Double check [the list in the article](https://ethereum.org/en/developers/docs/smart-contracts/security/#smart-contract-security) to find the one that fits your needs.
+- Beware of attacks detailed in the following articles 👇
+
+- You can use security tools such as Slither, Mythril, Securify ... Double check [the list in the article](https://ethereum.org/en/developers/docs/smart-contracts/security/#smart-contract-security) to find the one that fits your needs.
 </details>
 
 <details>
 <summary><a href="https://consensys.github.io/smart-contract-best-practices/attacks/reentrancy/">Reetrancy attack</a></summary>
 
-  * A reentrancy attack occurs when a function makes an external call to another untrusted contract and this untrusted contract makes a recursive call back to the original function in an attempt to drain funds.
+- A reentrancy attack occurs when a function makes an external call to another untrusted contract and this untrusted contract makes a recursive call back to the original function in an attempt to drain funds.
 
-  * Reentrancy on a Single Function 
- 
-    * The first version of this bug to be noticed involved functions that could be called repeatedly, before the first invocation of the function was finished.
+- Reentrancy on a Single Function
+
+  - The first version of this bug to be noticed involved functions that could be called repeatedly, before the first invocation of the function was finished.
 
 ```solidity
 // INSECURE
@@ -180,10 +218,9 @@ function withdrawBalance() public {
 }
 ```
 
-  * Cross-function Reentrancy
+- Cross-function Reentrancy
 
-    * Attack possible when a vulnerable function shares state with another function that has a desirable effect for the attacker.
-
+  - Attack possible when a vulnerable function shares state with another function that has a desirable effect for the attacker.
 
 ```solidity
 // Here withdraw() calls the attacker’s fallback() function same as with the single function reentrancy attack.
@@ -202,32 +239,32 @@ function withdraw() external {
     balances[msg.sender] = 0;
 }
 ```
- 
-  * Prevent reentrancy attacks
- 
-    * Finishing all internal work (ie. state changes) first, and only then calling the external function.
- 
-    * Avoid calling functions which call external functions.
- 
-    * When it's possible for you, it's considered safer to use send() and transfer() instead of call() because they are limited to 2,300 gas.
 
-    * Use the Checks-effects-interactions pattern
-    >This pattern defines the order in which you should structure your functions.
-    >
-    >First perform any checks, which are normally assert and require statements, at the beginning of the function.
-    >
-    >If the checks pass, the function should then resolve all the effects to the state of the contract.
-    >
-    >Only after all state changes are resolved should the function interact with other contracts. By calling external functions last, even if an attacker makes a recursive call to the original function they cannot abuse the state of the contract.
- 
-  * Mutex
- 
-    * In more complex situations such as protecting against cross-function reentrancy attacks it may be necessary to use a mutex.
+- Prevent reentrancy attacks
 
-    * A mutex places a lock on the contract state. Only the owner of the lock can modify the state.
- 
-    * OpenZeppelin has it’s own mutex implementation you can use called ReentrancyGuard. [Please check the documentation here.](https://docs.openzeppelin.com/contracts/4.x/api/security#ReentrancyGuard)
- 
+  - Finishing all internal work (ie. state changes) first, and only then calling the external function.
+
+  - Avoid calling functions which call external functions.
+
+  - When it's possible for you, it's considered safer to use send() and transfer() instead of call() because they are limited to 2,300 gas.
+
+  - Use the Checks-effects-interactions pattern
+    > This pattern defines the order in which you should structure your functions.
+    >
+    > First perform any checks, which are normally assert and require statements, at the beginning of the function.
+    >
+    > If the checks pass, the function should then resolve all the effects to the state of the contract.
+    >
+    > Only after all state changes are resolved should the function interact with other contracts. By calling external functions last, even if an attacker makes a recursive call to the original function they cannot abuse the state of the contract.
+
+- Mutex
+
+  - In more complex situations such as protecting against cross-function reentrancy attacks it may be necessary to use a mutex.
+
+  - A mutex places a lock on the contract state. Only the owner of the lock can modify the state.
+
+  - OpenZeppelin has it’s own mutex implementation you can use called ReentrancyGuard. [Please check the documentation here.](https://docs.openzeppelin.com/contracts/4.x/api/security#ReentrancyGuard)
+
 </details>
 
 [Reetrancy attack via a modifier 🏗️](https://medium.com/valixconsulting/solidity-smart-contract-security-by-example-03-reentrancy-via-modifier-fba6b1d8ff81)
