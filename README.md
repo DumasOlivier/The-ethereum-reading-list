@@ -283,9 +283,13 @@ function withdraw() external {
 
 [Force feeding attack 🏗️](https://consensys.github.io/smart-contract-best-practices/attacks/force-feeding/)
 
-## Scaling
+## Bridges
+
+## Scaling / Layer 2
 
 [Scaling 🏗️](https://ethereum.org/en/developers/docs/scaling/)
+
+## Oracles
 
 ## Zero Knowledge proof
 
