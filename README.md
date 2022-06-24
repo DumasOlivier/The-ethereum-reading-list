@@ -1,9 +1,12 @@
 # The Ethereum reading list
 
+<div align="center">
+  <img src="https://ethereum.org/static/4d030a46f561e5c754cabfc1a97528ff/3ba1a/impact_transparent.webp" width="40%" />
+</div>
+https://ethereum.org/en/
 Reading list of interesting articles and their highlights used to learn Solidity and blockchain concepts.
 
-![Ethereum hero](https://ethereum.org/static/28214bb68eb5445dcb063a72535bc90c/9019e/hero.webp)
-_ethereum.org_
+Note : All illustrations are from the [official ethereum website.](https://ethereum.org/en/)
 
 ### How to contribute ?
 
@@ -379,3 +382,7 @@ _To read from 1 to 3_
 [2 - Exploring Elliptic Curve Pairings 🏗️](https://medium.com/@VitalikButerin/exploring-elliptic-curve-pairings-c73c1864e627)
 
 [3 - Zk-SNARKs: Under the Hood 🏗️](https://medium.com/@VitalikButerin/zk-snarks-under-the-hood-b33151a013f6)
+
+<br />
+
+![Ethereum hero](https://ethereum.org/static/28214bb68eb5445dcb063a72535bc90c/9019e/hero.webp)
