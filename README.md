@@ -287,7 +287,78 @@ function withdraw() external {
 
 ## Scaling / Layer 2
 
-[Scaling 🏗️](https://ethereum.org/en/developers/docs/scaling/)
+<details>
+<summary><a href="https://ethereum.org/en/developers/docs/scaling/">Scaling</a></summary>
+
+- The main goal of scalability is to increase transaction speed (faster finality), and transaction throughput (high transactions per second), without sacrificing decentralization or security
+
+## On-chain scaling
+
+### Sharding
+
+- Split a database horizontally to reduce network congestion and increase transactions per second by creating new chains, known as “shards.”
+
+- This will also lighten the load for each validator who will no longer be required to process the entirety of all transactions across the network.
+
+## Off-chain scaling
+
+### Layer 2 scaling
+
+- Scale your application by handling transactions off the Ethereum Mainnet while taking advantage of the decentralized security model of Mainnet.
+
+- Generally speaking, transactions are submitted to these layer 2 nodes instead of being submitted directly to layer 1 (Mainnet).
+
+- For some solutions the layer 2 instance then batches them into groups before anchoring them to layer 1, after which they are secured by layer 1 and cannot be altered.
+
+#### Rollups
+
+- Rollups perform transaction execution outside layer 1 and then the data is posted to layer 1 where consensus is reached. It exists two types of Rollups (see detailed articles in other sections) :
+
+- Optimistic Rollups : Assumes transactions are valid by default and only runs computation, via a fraud proof, in the event of a challenge.
+
+- Zero-knowledge Rollups : Zero-knowledge rollups: runs computation off-chain and submits a validity proof to the chain.
+
+#### State channels
+
+- State channels allow participants to transact x number of times off-chain while only submitting two on-chain transactions to the Ethereum network.
+
+- Participants must lock a portion of Ethereum's state, like an ETH deposit, into a multisig contract.
+
+- Locking the state in this way is the first transaction and opens up the channel. The participants can then transact quickly and freely off-chain.
+
+- When the interaction is finished, a final on-chain transaction is submitted, unlocking the state.
+
+- The two types of channels are currently state channels and payment channels.
+
+#### Sidechains
+
+- Independent EVM-compatible blockchain which runs in parallel to Mainnet.
+
+- These are compatible with Ethereum via two-way bridges, and run under their own chosen rules of consensus, and block parameters.
+
+- Several sidechains are existing such as Polygon PoS, Skale, and Rootstock.
+
+#### Plasma chain
+
+- Separate blockchain that is anchored to the main Ethereum chain, and uses fraud proofs (like optimistic rollups) to arbitrate disputes.
+
+- Sometimes referred to as "child" chains as they are essentially smaller copies of the Ethereum Mainnet.
+
+- [More on plasma chains in the official documentation here.](https://ethereum.org/en/developers/docs/scaling/plasma)
+
+#### Validium
+
+- A Validium chain uses validity proofs like zero-knowledge rollups but data is not stored on the main layer 1 Ethereum chain.
+
+- This can lead to 10k transactions per second per Validium chain and multiple chains can be run in parallel.
+
+- Off-chain transactions executed on the validium chain are verified via a smart contract on the base Ethereum layer using zero-knowledge proofs, which can be SNARKs or STARKs.
+
+- [More on Validium chains in the official documentation here.](https://ethereum.org/en/developers/docs/scaling/validium/)
+
+</details>
+
+[Sharding 🏗️](https://ethereum.org/en/upgrades/sharding/)
 
 ## Oracles
 
