@@ -3,7 +3,7 @@
 <div align="center">
   <img src="https://ethereum.org/static/4d030a46f561e5c754cabfc1a97528ff/3ba1a/impact_transparent.webp" width="40%" />
 </div>
-https://ethereum.org/en/
+
 Reading list of interesting articles and their highlights used to learn Solidity and blockchain concepts.
 
 Note : All illustrations are from the [official ethereum website.](https://ethereum.org/en/)
