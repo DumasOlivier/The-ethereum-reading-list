@@ -86,6 +86,14 @@ Note : All illustrations are from the [official ethereum website.](https://ether
 
 </details>
 
+## Tokens
+
+[ERC20 🏗️](https://docs.openzeppelin.com/contracts/2.x/erc20)
+
+[ERC721 🏗️](https://docs.openzeppelin.com/contracts/2.x/erc721)
+
+[ERC777 🏗️](https://docs.openzeppelin.com/contracts/2.x/erc777)
+
 ## Smart contracts
 
 <details>
