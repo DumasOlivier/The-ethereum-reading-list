@@ -96,6 +96,12 @@ Note : All illustrations are from the [official ethereum website.](https://ether
 
 ## Smart contracts
 
+### Memory keyword
+
+[What does the keyword "memory" do exactly? 🏗️](https://ethereum.stackexchange.com/questions/1701/what-does-the-keyword-memory-do-exactly)
+
+### Deploying smart contracts
+
 <details>
 <summary><a href="https://ethereum.stackexchange.com/questions/101336/what-is-the-benefit-of-using-create2-to-create-a-smart-contract">What is the benefit of using create2() to create a smart contract?</a></summary>
 <br/>
