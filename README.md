@@ -88,7 +88,43 @@ Note : All illustrations are from the [official ethereum website.](https://ether
 
 ## Tokens
 
-[ERC20 🏗️](https://docs.openzeppelin.com/contracts/2.x/erc20)
+<details>
+  <summary><a href="https://docs.openzeppelin.com/contracts/4.x/erc20">ERC20</a></summary>
+  
+  - An ERC20 token contract keeps track of fungible tokens: any one token is exactly equal to any other token.
+  
+  - Each Token is exactly the same (in type and value) than another Token.
+  
+  - It's quite easy to build your own ERC20 token contract using Openzepplin standards :
+ 
+```solidity
+pragma solidity ^0.8.0;
+
+import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
+
+contract GLDToken is ERC20 {
+    constructor(uint256 initialSupply) ERC20("Gold", "GLD") {
+        _mint(msg.sender, initialSupply);
+    }
+}
+```
+  
+  - About decimals :
+> Often, you’ll want to be able to divide your tokens into arbitrary amounts: say, if you own 5 GLD, you may want to send 1.5 GLD to a friend. Unfortunately, Solidity and the EVM do not support this behavior: only integer (whole) numbers can be used, which poses an issue. You may send 1 or 2 tokens, but not 1.5.
+
+- To work around this, ERC20 provides a decimals field, which is used to specify how many decimal places a token has.
+  
+- Decimals is only used for display purposes. All arithmetic inside the contract is still performed on integers.
+
+- You’ll probably want to use a decimals value of 18, just like Ether and most ERC20 token contracts in use.
+
+```solidity
+// Send 5 tokens using a token contract with 18 decimals :
+
+transfer(recipient, 5 * (10 ** 18));
+```
+
+</details>
 
 [ERC721 🏗️](https://docs.openzeppelin.com/contracts/2.x/erc721)
 
