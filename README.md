@@ -126,9 +126,69 @@ transfer(recipient, 5 * (10 ** 18));
 
 </details>
 
-[ERC721 🏗️](https://docs.openzeppelin.com/contracts/2.x/erc721)
+<details>
+  <summary><a href="https://docs.openzeppelin.com/contracts/4.x/erc721">ERC721</a></summary>
+  
+  - ERC721 is a standard for representing ownership of non-fungible tokens, where each token is unique.
+  
+  - Oppenzepplins standards makes it easier to implement an ERC721 contract by using it's ERC721URIStorage contract :
 
-[ERC777 🏗️](https://docs.openzeppelin.com/contracts/2.x/erc777)
+```solidity
+pragma solidity ^0.8.0;
+
+import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
+import "@openzeppelin/contracts/utils/Counters.sol";
+
+contract GameItem is ERC721URIStorage {
+    using Counters for Counters.Counter;
+    Counters.Counter private _tokenIds;
+
+    constructor() ERC721("GameItem", "ITM") {}
+
+    function awardItem(address player, string memory tokenURI)
+        public
+        returns (uint256)
+    {
+        uint256 newItemId = _tokenIds.current();
+        _mint(player, newItemId);
+        _setTokenURI(newItemId, tokenURI);
+
+        _tokenIds.increment();
+        return newItemId;
+    }
+}
+```
+
+  - Metadata are used to store most of the token properties that makes it unique. It can be stored on the blockchain directly but it's cheaper to do this offchain by using IPFS to store your JSON document and only store the url that points to this document onchain.
+  
+  - The structure of the metadata is important if you want to see your tokens / NFTs listed on opensea for example, you can see in the [official opensea guidelines on how to structure your metadata here](https://docs.opensea.io/docs/metadata-standards#metadata-structure).
+  
+  - Example of metadata structure :
+
+```json
+{
+  "description": "Friendly OpenSea Creature that enjoys long swims in the ocean.", 
+  "external_url": "https://openseacreatures.io/3", 
+  "image": "https://storage.googleapis.com/opensea-prod.appspot.com/puffs/3.png", 
+  "name": "Dave Starbelly",
+  "attributes": [
+    {
+      "trait_type": "Base", 
+      "value": "Starfish"
+    }, 
+    {
+      "trait_type": "Eyes", 
+      "value": "Big"
+    }
+  ], 
+}
+```
+
+</details>
+
+[ERC777 🏗️](https://docs.openzeppelin.com/contracts/4.x/erc777)
+
+[ERC1155 🏗️](https://docs.openzeppelin.com/contracts/4.x/erc1155)
 
 ## Smart contracts
 
