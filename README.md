@@ -186,7 +186,65 @@ contract GameItem is ERC721URIStorage {
 
 </details>
 
-[ERC777 🏗️](https://docs.openzeppelin.com/contracts/4.x/erc777)
+<details>
+  <summary><a href="https://docs.openzeppelin.com/contracts/4.x/erc777">ERC777</a></summary>
+  
+  - ERC777 is a standard for fungible tokens, and is focused around allowing more complex interactions when trading tokens.  
+  
+  - The standard is designed for improvements in `decimals`, minting, and burning with proper events, but its main feature is receive hook.
+  
+  > A hook is simply a function in a contract that is called when tokens are sent to it, meaning accounts and contracts can react to receiving tokens. 
+  
+  - It enables atomic purchases using tokens, rejecting reception of tokens by reverting the hook call, and redirecting the received tokens to other addresses becomes easier.
+  
+  - The contracts that obey ERC777 standards are required to implement the hook present in contract in order to receive tokens. 
+  
+  > The implementation of the hook makes sure that no token can get stuck in a contract that is unaware of ERC777 protocol, which happens a lot in case of ERC20.
+
+  **Note:** The ERC777 standard is backwards compatible with ERC20, meaning one can interact with these tokens as if they are ERC20, using the standard functions and adding the sending hook.
+  
+  ### Constructing an ERC777 token contract 
+  ERC777 protocol includes all the standards of ERC20 and additionally the hook.
+  
+  ```solidity
+  // contracts/GLDToken.sol
+  // SPDX-License-Identifier: MIT
+  pragma solidity ^0.8.0;
+
+  import "@openzeppelin/contracts/token/ERC777/ERC777.sol";
+
+  contract GLDToken is ERC777 {
+    constructor(uint256 initialSupply, address[] memory defaultOperators)
+        ERC777("Gold", "GLD", defaultOperators)
+    {
+        _mint(msg.sender, initialSupply, "", "");
+    }
+  }
+  
+  ```
+  
+  ```solidity
+  > GLDToken.balanceOf(deployerAddress)
+  1000
+  ```
+  
+  ```solidity
+  > GLDToken.transfer(otherAddress, 300)
+  > GLDToken.send(otherAddress, 300, "")
+  > GLDToken.balanceOf(otherAddress)
+  600
+  > GLDToken.balanceOf(deployerAddress)
+  400
+  ```
+  
+  ### Sending tokens to contracts
+  The token transfer might revert in case of failed transfer. The token is returned back with the below message. This prevent tokens from being locked in forever. 
+
+  ```
+  ERC777: token recipient contract has no implementer for ERC777TokensRecipient
+  ```
+  
+</details>
 
 [ERC1155 🏗️](https://docs.openzeppelin.com/contracts/4.x/erc1155)
 
