@@ -222,7 +222,9 @@ contract GameItem is ERC721URIStorage {
   }
   
   ```
-  
+
+  - Both `name` and `symbol` are assigned, but not `decimals`. The ERC777 specification mandates that decimals always returns a fixed value of 18, so there’s no need to set it ourselves.
+
   ```solidity
   > GLDToken.balanceOf(deployerAddress)
   1000
