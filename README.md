@@ -254,7 +254,6 @@ contract GameItem is ERC721URIStorage {
 
 ### Memory keyword
 
-[What does the keyword "memory" do exactly? 🏗️]()
 <details>
 <summary><a href="https://ethereum.stackexchange.com/questions/1701/what-does-the-keyword-memory-do-exactly">What does the keyword "memory" do exactly?</a></summary>
 <br/>
