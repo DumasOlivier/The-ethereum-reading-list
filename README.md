@@ -254,7 +254,35 @@ contract GameItem is ERC721URIStorage {
 
 ### Memory keyword
 
-[What does the keyword "memory" do exactly? 🏗️](https://ethereum.stackexchange.com/questions/1701/what-does-the-keyword-memory-do-exactly)
+[What does the keyword "memory" do exactly? 🏗️]()
+<details>
+<summary><a href="https://ethereum.stackexchange.com/questions/1701/what-does-the-keyword-memory-do-exactly">What does the keyword "memory" do exactly?</a></summary>
+<br/>
+
+_This is a Stack exchange answer from [eth](https://ethereum.stackexchange.com/users/42/eth), it was already a summary from the eth documentation and I found that it was worth reading fully like that :_
+
+> The Ethereum Virtual Machine has three areas where it can store items.
+>
+> The first is “storage”, where all the contract state variables reside. Every contract has its own storage and it is persistent between function calls and quite expensive to use.
+>
+>The second is “memory”, this is used to hold temporary values. It is erased between (external) function calls and is cheaper to use.
+>
+>The third one is the stack, which is used to hold small local variables. It is almost free to use, but can only hold a limited amount of values.
+>
+>For almost all types, you cannot specify where they should be stored, because they are copied everytime they are used.
+>
+>The types where the so-called storage location is important are structs and arrays. If you e.g. pass such variables in function calls, their data is not copied if it can stay in memory or stay in storage. This means that you can modify their content in the called function and these modifications will still be visible in the caller.
+>
+>There are defaults for the storage location depending on which type of variable it concerns (source):
+
+```solidity
+// state variables are always in storage
+// function arguments are always in memory
+// local variables of struct, array or mapping type reference storage by default
+// local variables of value type (i.e. neither array, nor struct nor mapping) are stored in the stack
+```
+
+</summary>
 
 ### Deploying smart contracts
 
