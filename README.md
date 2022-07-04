@@ -255,7 +255,7 @@ contract GameItem is ERC721URIStorage {
 ### Memory keyword
 
 <details>
-<summary><a href="https://ethereum.stackexchange.com/questions/1701/what-does-the-keyword-memory-do-exactly">What does the keyword "memory" do exactly?</a></summary>
+<summary><a href="https://ethereum.stackexchange.com/questions/1701/what-does-the-keyword-memory-do-exactly">What does the keyword "memory" do exactly?</a>
 <br/>
 
 _This is a Stack exchange answer from [eth](https://ethereum.stackexchange.com/users/42/eth), it was already a summary from the eth documentation and I found that it was worth reading fully like that :_
@@ -280,7 +280,6 @@ _This is a Stack exchange answer from [eth](https://ethereum.stackexchange.com/u
 // local variables of struct, array or mapping type reference storage by default
 // local variables of value type (i.e. neither array, nor struct nor mapping) are stored in the stack
 ```
-
 </summary>
 
 ### Deploying smart contracts
