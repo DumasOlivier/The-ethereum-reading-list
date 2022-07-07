@@ -563,6 +563,90 @@ function withdraw() external {
 
 ## Oracles
 
+<details>
+<summary><a href="https://ethereum.org/en/developers/docs/oracles/">Oracles</a></summary>
+
+## What is an Oracle?
+
+- Oracles are data feeds that allow Ethereum access to off-chain information that exists in the real world. Essentially allowing you to query this data inside smart contracts. Oracles can also be used to "send" data out to the real world. 
+
+- An example of an application they would be used in, is in predicition markets. Where the settlement of a payout relies on a real world outcome, such as a the winner of a sports bout. 
+
+
+## Why Are They Needed?
+
+- You might ask, why don't we just make direct calls to APIs on the internet? In the Ethereum blockchain, every node in the network needs to replay every transaction to produce the same result (reach consensus). However depending on the exact time that API is called that data would be variable. Making it impossible to reach consensus. 
+
+- Oracles mitiage this issue by utilizing a decentralized system that grabs the data off-chain and then posts that data to the blockchain in an immutable way. As it's being posted directly on the blockchain, all nodes will use this data instead of querying an API themselves. 
+
+### The Oracle Problem
+
+- Oracles can seen to be a flawed concept, as relying on a single source of truth to provide data would not be secure. It also invalidates the concept of decentralization. This is known as "the oracle problem". 
+
+- This problem can be avoided by using a decentralize oracle that pulls data from many data sources. So that redundancy is ensured
+
+### Security
+- As mentioned, an oracle is only as secure as the data sources it's comprised of. That is why its important to use [a feed system](https://developer.makerdao.com/feeds/), such as one utilized by MakerDAO. Which collates data from many external sources.
+
+### Architecture
+
+- A simple example of Oracle architecture would be:
+    - 1) Emit a log from a Smart Contract with a request
+    - 2) Have an off-chain service subscribed to listen to these events
+    - 3) The off-chain service performs the tasks defined by that log
+    - 4) The off-chain service reports back to the Smart Contracy by passing in the data as a transaction
+
+ However, as outlined by the oracle problem, this is a centralized way of implementing an oracle.
+ 
+- [Chainlink OCR](https://blog.chain.link/off-chain-reporting-live-on-mainnet/) Improved upon this by having a network of nodes call different data sources and aggregating the data in a decentralized and verifable nature.
+
+    - The nodes communicate off-chain, cryptograpgically sign their reponses, aggregate the data, and then sends one transaction on-chain that contains the result. Furthermore, it includes incentivization and penalization methods to provide a trusted  system
+
+## Usage
+
+- At of the time this writing, the most commonly accepted way to implement oracles is to use the readily available systems that [Chainlink](https://chain.link/) has developed. Chainlink has already deployed verifiable Oracle systems funded by the public known as [data feeds](https://data.chain.link/). Furthermore, they provide a framework to use their node structure to query customized data. See the services Chainlink offers:
+
+    - [Get crypto price feeds in your contract](https://chain.link/solutions/defi)
+    - [Generate verifiable random numbers (useful for gaming)](https://chain.link/solutions/chainlink-vrf)
+    - [Call external APIs](https://docs.chain.link/docs/request-and-receive-data)
+
+### Chainlink Data Feeds
+- [How to implement Chainlink Data Feeds](https://docs.chain.link/docs/get-the-latest-price/)
+
+### [Chainlink VRF](https://docs.chain.link/docs/chainlink-vrf/)
+
+- Chainlink Verifiable Random Function allows a probably-fair way to verify a source of randomness in smart contracts. Provably-fair random numbers are difficult to produce inherently, as blockchains are deterministic.
+
+- By using this Chainlink service to produce a verifiable random number, you follow the [request and receive cycle](https://docs.chain.link/docs/architecture-request-model). Where the LINK token is used as gas to pay to oracle providers for in turn, having a node produce a verifable random number.  
+
+### [Chainlink Keepers](https://docs.chain.link/docs/chainlink-keepers/introduction/)
+
+- Inherently, smart contract can't trigger or initate their own functions at specific times, or depending on specific logic. This can only be done through a manual transaction call to a smart contract.
+
+- Chainlink Keepers is a decentralized network of nodes that will carry out these tasks in a trust minimized and decentralized manner
+
+- The use of this service requires that a smart contract include a [KeeperCompatibleInterface](https://docs.chain.link/docs/chainlink-keepers/compatible-contracts/)
+    - checkUpkeep: Checks if the contract requires work to be done
+    - performUpkeep: Performs the work on the contract, if instructed by checkUpkeep
+
+### [Chainlink API Call](https://docs.chain.link/docs/make-a-http-get-request)
+
+- This is a service that allows you to make custom API calls of your choosing and have the data reported on-chain in a trust minimized nature. It is to be noted that having a single oracle perform this request would be a centralized implementation
+
+## Various Oracle Service Providers
+- [Chainlink](https://witnet.io/)
+- [Witnet](https://witnet.io/)
+- [Provable](https://provable.xyz/)
+- [Paralink](https://paralink.network/)
+- [Dos.Network](https://dos.network/)
+- [Band](https://bandprotocol.com/)
+
+## Implement Your Own Oracle Solution
+
+- See [this](https://medium.com/@pedrodc/implementing-a-blockchain-oracle-on-ethereum-cedc7e26b49e) comprehensive overview by Pedro Costa
+
+</details>
+
 ## Zero Knowledge proof
 
 [ZK Starter pack 🏗️](https://ethresear.ch/t/zero-knowledge-proofs-starter-pack/4519)
