@@ -86,6 +86,86 @@ Note : All illustrations are from the [official ethereum website.](https://ether
 
 </details>
 
+## Merkle Tree
+
+What is it and how does it work 🏗️
+
+## Hash functions
+
+Introduction to hash functions 🏗️
+
+SHA256 hashing function 🏗️
+
+## The Ethereum Virtual Machine
+
+<details>
+  <summary><a href="https://ethereum.org/en/developers/docs/evm/">Ethereum Virtual Machine</a></summary>
+  
+  - Exist as one single entity maintained by thousands of connected computers running an Ethereum client
+  
+  - At any given block in the chain, Ethereum has one and only one 'canonical' state.
+  
+  - The EVM is what defines the rules for computing a new valid state from block to block.
+  
+  -  Instead of a distributed ledger (like Bitcoin), Ethereum is a distributed state machine.
+  
+### FROM LEDGER TO STATE MACHINE
+
+  > Ethereum's state is a large data structure which holds not only all accounts and balances, but a machine state, which can change from block to block according to a pre-defined set of rules, and which can execute arbitrary machine code.
+  
+<div align="center">
+  <img src="https://ethereum.org/static/e8aca8381c7b3b40c44bf8882d4ab930/302a4/evm.png" width="80%" />
+</div>
+  
+### THE ETHEREUM STATE TRANSITION FUNCTION
+
+  - The EVM behaves as a mathematical function would: Given an input, it produces a deterministic output.
+  
+```Solidity
+  //Given an old valid state (S) and a new set of valid transactions (T), the Ethereum state transition function Y(S, T) produces a new valid output state S'
+  Y(S, T)= S'
+```
+
+#### State
+
+  - The state of the EVM is an enormous data structure called a [modified Merkle Patricia Trie](https://ethereum.org/en/developers/docs/data-structures-and-encoding/patricia-merkle-trie/).
+  
+  - This modified Merkle Patricia Trie keeps all accounts linked by hashes and reducible to a single root hash stored on the blockchain.
+
+#### Transactions
+
+  - Transactions are cryptographically signed instructions from accounts.
+  
+  - There are two types of transactions : those which result in message calls and those which result in contract creation.
+  
+  - Contract creation results in the creation of a new contract account containing compiled smart contract bytecode. 
+
+#### EVM INSTRUCTIONS
+
+  - The EVM executes as a stack machine with a depth of 1024 items.
+  
+  - Each item is a 256-bit word, which was chosen for the ease of use with 256-bit cryptography (such as Keccak-256 hashes or secp256k1 signatures).
+
+  - During execution, the EVM maintains a transient memory, which does not persist between transactions.
+  
+  - Compiled smart contract bytecode executes as a number of EVM opcodes, which perform standard stack operations like XOR, AND, ADD, SUB, etc.
+
+<div align="center">
+  <img src="https://ethereum.org/static/9628ab90bfd02f64cf873446cbdc6c70/302a4/gas.png" width="80%" />
+</div>
+
+### EVM IMPLEMENTATIONS
+
+- All implementations of the EVM must adhere to the specification described in the Ethereum Yellowpaper.
+
+- All Ethereum clients include an EVM implementation.
+
+</details>
+
+[Ethereum Virtual Machine Opcodes 🏗️](https://www.ethervm.io/)
+
+[Opocodes 🏗️](https://ethereum.org/en/developers/docs/evm/opcodes/)
+
 ## Tokens
 
 <details>
