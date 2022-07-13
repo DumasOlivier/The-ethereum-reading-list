@@ -164,7 +164,7 @@ SHA256 hashing function 🏗️
 
 [Ethereum Virtual Machine Opcodes 🏗️](https://www.ethervm.io/)
 
-[Opocodes 🏗️](https://ethereum.org/en/developers/docs/evm/opcodes/)
+[Opcodes 🏗️](https://ethereum.org/en/developers/docs/evm/opcodes/)
 
 ## Tokens
 
