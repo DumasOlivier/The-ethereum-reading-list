@@ -162,9 +162,7 @@ SHA256 hashing function 🏗️
 
 </details>
 
-[Ethereum Virtual Machine Opcodes 🏗️](https://www.ethervm.io/)
-
-[Opcodes 🏗️](https://ethereum.org/en/developers/docs/evm/opcodes/)
+[Explaining core system Ethereum Virtual Machine 🏗️](https://hackmd.io/@Nhlanhla/SyIOqbUyK)
 
 ## Tokens
 
