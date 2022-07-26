@@ -49,7 +49,7 @@ Note : All illustrations are from the [official ethereum website.](https://ether
 
 <details>
 <summary><a href="https://ethereum.org/en/developers/docs/accounts">Ethereum Accounts</a></summary>
- 
+
  * Accounts can be user-controlled (Externally-owned accounts) or deployed as smart contracts (Smart Contract accounts).
 
 - Both can receive, hold and send ETH and tokens & Interact with deployed smart contracts
@@ -100,27 +100,27 @@ SHA256 hashing function 🏗️
 
 <details>
   <summary><a href="https://ethereum.org/en/developers/docs/evm/">Ethereum Virtual Machine</a></summary>
-  
+
   - Exist as one single entity maintained by thousands of connected computers running an Ethereum client
-  
+
   - At any given block in the chain, Ethereum has one and only one 'canonical' state.
-  
+
   - The EVM is what defines the rules for computing a new valid state from block to block.
-  
+
   -  Instead of a distributed ledger (like Bitcoin), Ethereum is a distributed state machine.
-  
+
 ### FROM LEDGER TO STATE MACHINE
 
   > Ethereum's state is a large data structure which holds not only all accounts and balances, but a machine state, which can change from block to block according to a pre-defined set of rules, and which can execute arbitrary machine code.
-  
+
 <div align="center">
   <img src="https://ethereum.org/static/e8aca8381c7b3b40c44bf8882d4ab930/302a4/evm.png" width="80%" />
 </div>
-  
+
 ### THE ETHEREUM STATE TRANSITION FUNCTION
 
   - The EVM behaves as a mathematical function would: Given an input, it produces a deterministic output.
-  
+
 ```Solidity
   //Given an old valid state (S) and a new set of valid transactions (T), the Ethereum state transition function Y(S, T) produces a new valid output state S'
   Y(S, T)= S'
@@ -129,25 +129,25 @@ SHA256 hashing function 🏗️
 #### State
 
   - The state of the EVM is an enormous data structure called a [modified Merkle Patricia Trie](https://ethereum.org/en/developers/docs/data-structures-and-encoding/patricia-merkle-trie/).
-  
+
   - This modified Merkle Patricia Trie keeps all accounts linked by hashes and reducible to a single root hash stored on the blockchain.
 
 #### Transactions
 
   - Transactions are cryptographically signed instructions from accounts.
-  
+
   - There are two types of transactions : those which result in message calls and those which result in contract creation.
-  
-  - Contract creation results in the creation of a new contract account containing compiled smart contract bytecode. 
+
+  - Contract creation results in the creation of a new contract account containing compiled smart contract bytecode.
 
 #### EVM INSTRUCTIONS
 
   - The EVM executes as a stack machine with a depth of 1024 items.
-  
+
   - Each item is a 256-bit word, which was chosen for the ease of use with 256-bit cryptography (such as Keccak-256 hashes or secp256k1 signatures).
 
   - During execution, the EVM maintains a transient memory, which does not persist between transactions.
-  
+
   - Compiled smart contract bytecode executes as a number of EVM opcodes, which perform standard stack operations like XOR, AND, ADD, SUB, etc.
 
 <div align="center">
@@ -162,19 +162,106 @@ SHA256 hashing function 🏗️
 
 </details>
 
-[Explaining core system Ethereum Virtual Machine 🏗️](https://hackmd.io/@Nhlanhla/SyIOqbUyK)
+<details>
+  <summary><a href="https://hackmd.io/@Nhlanhla/SyIOqbUyK">Explaining core system Ethereum Virtual Machine</a></summary>
+
+  ### What is EVM (Ethereum Virtual Machine) ?
+
+  - The EVM allows smart contract code to run by compiling to EVM bytecode.
+
+  - EVM keeps each node systemically isolated from others in order to avoid security risks (if one node is compromised, it does not influence any other nodes and blockchain network).
+
+  ### Why do we need EVM ?
+
+  - Enables smart contract (solidity) to be executed on any computer (OS agnostic).
+
+  - works as a middle layer between a smart contract and operating system.
+
+  <div align="center">
+    <img src="https://i.imgur.com/8o8dKbn.jpg" width="60%">
+  </div>
+
+  - If we do not have EVM, we need to develop respective compilers for each operating system.
+
+  ### EVM bytecode
+
+  - EVM byte code is compiled from Solidity and executed on EVM.
+
+  > [Flow]
+  >
+  > Source Code -> Bytecode -> Machine Code
+  >
+  > Source Code: File written in programming language such as Java, Solidity.
+  >
+  > Bytecode: Compiled from source code and run on Virtual Machine such as JVM, EVM
+  >
+  > Machine Code: Code that only operating system can read. Bytecode is converted to Machine Code and finally executed.
+
+  ### What is Opcodes ?
+
+  - Opcodes (Operation code) is a set of instruction code for computers.
+
+  - Internally, EVM converts "EVM bytecode" to "Ethereum Virtual Machine Opcodes" to execute specific tasks.
+
+  - A developer also can directly write opcode with Solidity Assembly. But it might be a lot harder to understand than solidity.
+
+  ### Contract ABI (Application Binary Interface)
+
+  - Interface between two program modules.
+
+  - In Ethereum, Contract ABI is a standard defined as data structure and functions with JSON array format, to interact with a smart contract from external application.
+
+  ### Gas and EVM
+
+  - Fuel that is consumed for computation.
+
+  - Amount of Gas in each instruction is clearly defined in [Ethereum Yellow Paper](http://paper.gavwood.com/)
+
+  ### What is a Client
+
+  - Ethereum client is a software that implements EVM (Geth: Go-Ethereum, Parity: Rust implementation etc...)
+
+  - Provides EVM and other functions such as a command-line interface to interact Ethereum blockchain.
+
+  - The client has two types: full node client and lightweight client.
+
+  - Full node client downloads all blockchain data on disk and receives blocks and transaction to validate.
+
+  - Lightweight client downloads only blockchain header in order to save disk space.
+
+  #### Full Node Client
+
+  - Stores the full blockchain data available on disk and can serve the network with any data on request.
+
+  - Receives new transactions and blocks while participating in block validation.
+
+  -  Verifies all blocks and states.
+
+  - Stores recent state only for more efficient initial sync.
+
+  - All state can be derived from a full node.
+
+  - Once fully synced, stores all state moving forward similar to archive nodes (more below).
+
+ #### Lightweight Client
+
+  - Stores the header chain and requests everything else on demand.
+
+  - Can verify the validity of the data against the state roots in the block headers
+
+</details>
 
 ## Tokens
 
 <details>
   <summary><a href="https://docs.openzeppelin.com/contracts/4.x/erc20">ERC20</a></summary>
-  
+
   - An ERC20 token contract keeps track of fungible tokens: any one token is exactly equal to any other token.
-  
+
   - Each Token is exactly the same (in type and value) than another Token.
-  
+
   - It's quite easy to build your own ERC20 token contract using Openzepplin standards :
- 
+
 ```solidity
 pragma solidity ^0.8.0;
 
@@ -186,12 +273,12 @@ contract GLDToken is ERC20 {
     }
 }
 ```
-  
+
   - About decimals :
 > Often, you’ll want to be able to divide your tokens into arbitrary amounts: say, if you own 5 GLD, you may want to send 1.5 GLD to a friend. Unfortunately, Solidity and the EVM do not support this behavior: only integer (whole) numbers can be used, which poses an issue. You may send 1 or 2 tokens, but not 1.5.
 
 - To work around this, ERC20 provides a decimals field, which is used to specify how many decimal places a token has.
-  
+
 - Decimals is only used for display purposes. All arithmetic inside the contract is still performed on integers.
 
 - You’ll probably want to use a decimals value of 18, just like Ether and most ERC20 token contracts in use.
@@ -206,9 +293,9 @@ transfer(recipient, 5 * (10 ** 18));
 
 <details>
   <summary><a href="https://docs.openzeppelin.com/contracts/4.x/erc721">ERC721</a></summary>
-  
+
   - ERC721 is a standard for representing ownership of non-fungible tokens, where each token is unique.
-  
+
   - Oppenzepplins standards makes it easier to implement an ERC721 contract by using it's ERC721URIStorage contract :
 
 ```solidity
@@ -238,27 +325,27 @@ contract GameItem is ERC721URIStorage {
 ```
 
   - Metadata are used to store most of the token properties that makes it unique. It can be stored on the blockchain directly but it's cheaper to do this offchain by using IPFS to store your JSON document and only store the url that points to this document onchain.
-  
+
   - The structure of the metadata is important if you want to see your tokens / NFTs listed on opensea for example, you can see in the [official opensea guidelines on how to structure your metadata here](https://docs.opensea.io/docs/metadata-standards#metadata-structure).
-  
+
   - Example of metadata structure :
 
 ```json
 {
-  "description": "Friendly OpenSea Creature that enjoys long swims in the ocean.", 
-  "external_url": "https://openseacreatures.io/3", 
-  "image": "https://storage.googleapis.com/opensea-prod.appspot.com/puffs/3.png", 
+  "description": "Friendly OpenSea Creature that enjoys long swims in the ocean.",
+  "external_url": "https://openseacreatures.io/3",
+  "image": "https://storage.googleapis.com/opensea-prod.appspot.com/puffs/3.png",
   "name": "Dave Starbelly",
   "attributes": [
     {
-      "trait_type": "Base", 
+      "trait_type": "Base",
       "value": "Starfish"
-    }, 
+    },
     {
-      "trait_type": "Eyes", 
+      "trait_type": "Eyes",
       "value": "Big"
     }
-  ], 
+  ],
 }
 ```
 
@@ -266,24 +353,24 @@ contract GameItem is ERC721URIStorage {
 
 <details>
   <summary><a href="https://docs.openzeppelin.com/contracts/4.x/erc777">ERC777</a></summary>
-  
-  - ERC777 is a standard for fungible tokens, and is focused around allowing more complex interactions when trading tokens.  
-  
+
+  - ERC777 is a standard for fungible tokens, and is focused around allowing more complex interactions when trading tokens.
+
   - The standard is designed for improvements in `decimals`, minting, and burning with proper events, but its main feature is receive hook.
-  
-  > A hook is simply a function in a contract that is called when tokens are sent to it, meaning accounts and contracts can react to receiving tokens. 
-  
+
+  > A hook is simply a function in a contract that is called when tokens are sent to it, meaning accounts and contracts can react to receiving tokens.
+
   - It enables atomic purchases using tokens, rejecting reception of tokens by reverting the hook call, and redirecting the received tokens to other addresses becomes easier.
-  
-  - The contracts that obey ERC777 standards are required to implement the hook present in contract in order to receive tokens. 
-  
+
+  - The contracts that obey ERC777 standards are required to implement the hook present in contract in order to receive tokens.
+
   > The implementation of the hook makes sure that no token can get stuck in a contract that is unaware of ERC777 protocol, which happens a lot in case of ERC20.
 
   **Note:** The ERC777 standard is backwards compatible with ERC20, meaning one can interact with these tokens as if they are ERC20, using the standard functions and adding the sending hook.
-  
-  ### Constructing an ERC777 token contract 
+
+  ### Constructing an ERC777 token contract
   ERC777 protocol includes all the standards of ERC20 and additionally the hook.
-  
+
   ```solidity
   // contracts/GLDToken.sol
   // SPDX-License-Identifier: MIT
@@ -298,7 +385,7 @@ contract GameItem is ERC721URIStorage {
         _mint(msg.sender, initialSupply, "", "");
     }
   }
-  
+
   ```
 
   - Both `name` and `symbol` are assigned, but not `decimals`. The ERC777 specification mandates that decimals always returns a fixed value of 18, so there’s no need to set it ourselves.
@@ -307,7 +394,7 @@ contract GameItem is ERC721URIStorage {
   > GLDToken.balanceOf(deployerAddress)
   1000
   ```
-  
+
   ```solidity
   > GLDToken.transfer(otherAddress, 300)
   > GLDToken.send(otherAddress, 300, "")
@@ -316,14 +403,14 @@ contract GameItem is ERC721URIStorage {
   > GLDToken.balanceOf(deployerAddress)
   400
   ```
-  
+
   ### Sending tokens to contracts
-  The token transfer might revert in case of failed transfer. The token is returned back with the below message. This prevent tokens from being locked in forever. 
+  The token transfer might revert in case of failed transfer. The token is returned back with the below message. This prevent tokens from being locked in forever.
 
   ```
   ERC777: token recipient contract has no implementer for ERC777TokensRecipient
   ```
-  
+
 </details>
 
 [ERC1155 🏗️](https://docs.openzeppelin.com/contracts/4.x/erc1155)
@@ -646,20 +733,20 @@ function withdraw() external {
 
 ## What is an Oracle?
 
-- Oracles are data feeds that allow Ethereum access to off-chain information that exists in the real world. Essentially allowing you to query this data inside smart contracts. Oracles can also be used to "send" data out to the real world. 
+- Oracles are data feeds that allow Ethereum access to off-chain information that exists in the real world. Essentially allowing you to query this data inside smart contracts. Oracles can also be used to "send" data out to the real world.
 
-- An example of an application they would be used in, is in predicition markets. Where the settlement of a payout relies on a real world outcome, such as a the winner of a sports bout. 
+- An example of an application they would be used in, is in predicition markets. Where the settlement of a payout relies on a real world outcome, such as a the winner of a sports bout.
 
 
 ## Why Are They Needed?
 
-- You might ask, why don't we just make direct calls to APIs on the internet? In the Ethereum blockchain, every node in the network needs to replay every transaction to produce the same result (reach consensus). However depending on the exact time that API is called that data would be variable. Making it impossible to reach consensus. 
+- You might ask, why don't we just make direct calls to APIs on the internet? In the Ethereum blockchain, every node in the network needs to replay every transaction to produce the same result (reach consensus). However depending on the exact time that API is called that data would be variable. Making it impossible to reach consensus.
 
-- Oracles mitiage this issue by utilizing a decentralized system that grabs the data off-chain and then posts that data to the blockchain in an immutable way. As it's being posted directly on the blockchain, all nodes will use this data instead of querying an API themselves. 
+- Oracles mitiage this issue by utilizing a decentralized system that grabs the data off-chain and then posts that data to the blockchain in an immutable way. As it's being posted directly on the blockchain, all nodes will use this data instead of querying an API themselves.
 
 ### The Oracle Problem
 
-- Oracles can seen to be a flawed concept, as relying on a single source of truth to provide data would not be secure. It also invalidates the concept of decentralization. This is known as "the oracle problem". 
+- Oracles can seen to be a flawed concept, as relying on a single source of truth to provide data would not be secure. It also invalidates the concept of decentralization. This is known as "the oracle problem".
 
 - This problem can be avoided by using a decentralize oracle that pulls data from many data sources. So that redundancy is ensured
 
@@ -675,7 +762,7 @@ function withdraw() external {
     - 4) The off-chain service reports back to the Smart Contracy by passing in the data as a transaction
 
  However, as outlined by the oracle problem, this is a centralized way of implementing an oracle.
- 
+
 - [Chainlink OCR](https://blog.chain.link/off-chain-reporting-live-on-mainnet/) Improved upon this by having a network of nodes call different data sources and aggregating the data in a decentralized and verifable nature.
 
     - The nodes communicate off-chain, cryptograpgically sign their reponses, aggregate the data, and then sends one transaction on-chain that contains the result. Furthermore, it includes incentivization and penalization methods to provide a trusted  system
@@ -695,7 +782,7 @@ function withdraw() external {
 
 - Chainlink Verifiable Random Function allows a probably-fair way to verify a source of randomness in smart contracts. Provably-fair random numbers are difficult to produce inherently, as blockchains are deterministic.
 
-- By using this Chainlink service to produce a verifiable random number, you follow the [request and receive cycle](https://docs.chain.link/docs/architecture-request-model). Where the LINK token is used as gas to pay to oracle providers for in turn, having a node produce a verifable random number.  
+- By using this Chainlink service to produce a verifiable random number, you follow the [request and receive cycle](https://docs.chain.link/docs/architecture-request-model). Where the LINK token is used as gas to pay to oracle providers for in turn, having a node produce a verifable random number.
 
 ### [Chainlink Keepers](https://docs.chain.link/docs/chainlink-keepers/introduction/)
 
