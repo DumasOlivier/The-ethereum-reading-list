@@ -527,6 +527,12 @@ new_address = hash(0xFF, sender, salt, bytecode)
 
 </details>
 
+### Upgradeable contracts
+
+[Transparent Implementation  🏗️](#)
+
+[UUPS Implementation  🏗️](#)
+
 ## Ethereum Name Service
 
 ## Mining
